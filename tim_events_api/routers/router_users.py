@@ -7,6 +7,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 router = APIRouter(tags=["users"])
 
+
 @router.post("/token", response_model=Token)
 def login_for_access_token(db: Session= Depends(get_db),
                            form_data: OAuth2PasswordRequestForm = Depends()
@@ -50,6 +51,7 @@ def create_user(user: schema_users.UserCreate, db: Session=Depends(get_db)):
 def get_user_me(current_user: schema_users.User = Depends(get_current_user)):
         return current_user
 
+
 @router.get("/users/{user_id}/", response_model=schema_users.User)
 def read_user(
         user_id: int,
@@ -68,6 +70,7 @@ def read_user(
                                     detail="user does not exist")
         return user
 
+
 @router.put("/users/me/", response_model=schema_users.User)
 def update_user(
         user: schema_users.UserUpdate,
@@ -82,6 +85,7 @@ def update_user(
                           )
         updated_user = edit_user(user=user, user_id=current_user.id, db=db)
         return updated_user
+
 
 @router.delete("/users/me/")
 def delete_user(
