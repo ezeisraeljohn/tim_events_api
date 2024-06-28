@@ -13,6 +13,10 @@ The functions are:
 - add_user: Add a user.
 - edit_user: Edit a user.
 - remove_user: Remove a user.
+
+each function interacts with the database session object to perform the CRUD operations.
+For more information on how to perform CRUD operations,
+see: https://fastapi.tiangolo.com/tutorial/sql-databases/#create-the-crud-utilities
 """
 from sqlalchemy.orm import Session
 from ..models import models_user
