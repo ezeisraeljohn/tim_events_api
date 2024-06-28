@@ -22,8 +22,7 @@ from sqlalchemy.orm import Session
 from ..models import models_user
 from ..schemas import schema_users, schema_token
 from passlib.context import CryptContext
-from ..dependencies import SECRET_KEY, ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM \
-, get_db, oauth2_scheme
+from ..dependencies import SECRET_KEY, ALGORITHM, get_db, oauth2_scheme
 from datetime import timedelta, datetime, timezone
 from fastapi import Depends, HTTPException, status
 from ..database import SessionLocal
@@ -107,6 +106,7 @@ def authenticate_user(db: get_db, username: str, password: str):
                return False
         return user
 
+
 def create_access_token(data: dict, expire_timdelta: timedelta | None = None):
         """Create an access token.
         Args:
@@ -126,6 +126,7 @@ def create_access_token(data: dict, expire_timdelta: timedelta | None = None):
         to_encode['exp'] = expire
         encoded_jwt = jwt.encode(to_encode, SECRET_KEY, ALGORITHM)
         return encoded_jwt
+
 
 def get_current_user(token: str = Depends(oauth2_scheme)):
         """Get the current user.
@@ -155,6 +156,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         if user is None:
                 return credential_error
         return user
+
 
 def get_users(db: Session, skip: int = 0, limit: int = 100):
         """Get all users.
@@ -209,6 +211,7 @@ def edit_user(db:Session, user_id: int, user:schema_users.UserUpdate):
         db.commit()
         db.refresh(db_user)
         return db_user
+
 
 def remove_user(db: Session, user_id: int):
         """Remove a user.
