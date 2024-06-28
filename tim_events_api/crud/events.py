@@ -38,7 +38,7 @@ def get_events(user_id: int, db: Session, skip: int = 0, limit: int = 100):
         Returns:
         List[Event]: A list of event objects.
         """
-        return db.query(models_event.Event).filter(models_user.User.id == user_id).offset(skip).limit(limit).all()
+        return db.query(models_event.Event).filter(models_event.Event.organizer_id == user_id).offset(skip).limit(limit).all()
 
 
 def add_event(db: Session, event: schema_events.EventCreate, user_id: int):
