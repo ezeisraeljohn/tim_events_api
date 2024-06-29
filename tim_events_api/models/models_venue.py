@@ -10,5 +10,5 @@ class Venue(BaseModel, Base):
 
         name = Column(String(255))
         location = Column(String(255))
-        capacity = (Integer)
-        description = (Text)
+        capacity = Column(Integer)
+        description = Column(Text)
