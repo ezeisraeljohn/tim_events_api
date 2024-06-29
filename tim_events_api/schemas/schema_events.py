@@ -18,6 +18,7 @@ class EventUpdate(EventBase):
         pass
 
 class Event(EventBase):
+        id: int
         organizer_id: int
         speakers: list[Speaker] = []
         
