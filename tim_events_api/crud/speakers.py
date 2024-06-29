@@ -44,7 +44,7 @@ def get_speakers(user_id: int, db: Session, skip: int = 0, limit: int = 100):
 
 
 
-def add_speaker(db: Session, speaker: schema_speakers.SpeakerCreate, event_id: int):
+def add_speaker(db: Session, speaker: schema_speakers.SpeakerCreate):
         """Add a speaker to the database.
         Args:
         db (Session): The database session.
@@ -54,7 +54,7 @@ def add_speaker(db: Session, speaker: schema_speakers.SpeakerCreate, event_id: i
         Returns:
         Speaker: The speaker object.
         """
-        db_speaker = models_speaker.Speaker(**speaker.dict(), event_id=event_id)
+        db_speaker = models_speaker.Speaker(**speaker.dict())
         db.add(db_speaker)
         db.commit()
         db.refresh(db_speaker)
