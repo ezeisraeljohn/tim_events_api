@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 from ..crud.speakers import *
-from ..schemas import schema_speakers
+from ..schemas import schema_speakers, schema_users
 from ..dependencies import get_db
 from ..crud.users import get_current_user
 
@@ -8,13 +8,20 @@ router = APIRouter( prefix="/users/me", dependencies=[Depends(get_current_user)]
 
 
 @router.post("/speakers/", response_model=schema_speakers.Speaker)
-def create_speaker(speaker: schema_speakers.SpeakerCreate, db: Session=Depends(get_db)):
+def create_speaker(speaker: schema_speakers.SpeakerCreate,
+                   db: Session=Depends(get_db),
+                   current_user: schema_users.User=Depends(get_current_user)
+                   ):
         return add_speaker(db=db, speaker=speaker)
 
 
 @router.get("/speakers/", response_model=list[schema_speakers.Speaker])
-def read_speakers(skip: int=0, limit: int=100, db: Session=Depends(get_db)):
-        speakers = get_speakers(skip=skip, limit=limit, db=db)
+def read_speakers(skip: int=0,
+                  limit: int=100,
+                  db: Session=Depends(get_db),
+                  current_user: schema_users.User=Depends(get_current_user)
+                  ):
+        speakers = get_speakers(user_id=current_user.id, skip=skip, limit=limit, db=db)
         return speakers
 
 @router.get("/speakers/{speaker_id}/", response_model=schema_speakers.Speaker)
