@@ -10,7 +10,7 @@ class Speaker(BaseModel, Base):
       first_name = Column(String(60))
       last_name = Column(String(60))
       bio = Column(Text)
-      profile_picture = Column(String(255))
+      profile_picture = Column(String(255), nullable=True)
       contact_info = Column(String(255))
       event_id = Column(Integer, ForeignKey('events.id'))
 
