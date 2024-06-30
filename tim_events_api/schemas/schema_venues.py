@@ -3,7 +3,7 @@ from pydantic import BaseModel
 class VenueBase(BaseModel):
         name: str
         location: str
-        capacity: str
+        capacity: int
         description: str
 
 class VenueCreate(VenueBase):
@@ -16,5 +16,5 @@ class Venue(VenueBase):
         id: int
 
         class Config:
-                from_attributes = True
+                orm_mode = True
 
