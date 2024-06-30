@@ -16,6 +16,8 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 # Copy the source code
 COPY ./tim_events_api /code/tim_events_api
 
+COPY ./ca_cert.pem /code/
+
 # Expose the port FastAPI will run on
 EXPOSE 8000
 
