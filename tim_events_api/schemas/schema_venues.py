@@ -1,20 +1,23 @@
 from pydantic import BaseModel
 
+
 class VenueBase(BaseModel):
-        name: str
-        location: str
-        capacity: int
-        description: str
+    name: str
+    location: str
+    capacity: int
+    description: str
+
 
 class VenueCreate(VenueBase):
-        pass
+    pass
+
 
 class VenueUpdate(VenueBase):
-        pass
+    pass
+
 
 class Venue(VenueBase):
-        id: int
+    id: int
 
-        class Config:
-                orm_mode = True
-
+    class Config:
+        orm_mode = True
