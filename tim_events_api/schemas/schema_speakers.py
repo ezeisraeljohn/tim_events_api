@@ -2,21 +2,23 @@ from pydantic import BaseModel
 
 
 class SpeakerBase(BaseModel):
-        first_name: str
-        last_name: str
-        contact_info: str
-        bio: str
-        event_id: int
+    first_name: str
+    last_name: str
+    contact_info: str
+    bio: str
+    event_id: int
+
 
 class SpeakerCreate(SpeakerBase):
-        pass
+    pass
+
 
 class SpeakerUpdate(SpeakerBase):
-        pass
+    pass
+
 
 class Speaker(SpeakerBase):
-        id: int
-        class Config:
-                orm_mode = True
+    id: int
 
-
+    class Config:
+        orm_mode = True
