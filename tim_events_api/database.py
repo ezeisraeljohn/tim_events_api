@@ -7,15 +7,16 @@ from dotenv import load_dotenv
 load_dotenv()
 
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
-CA_CERT_PATH=os.getenv("CA_CERT_PATH")
-engine = create_engine(url=SQLALCHEMY_DATABASE_URL,
-        connect_args={
-             "ssl": {
-                 "sslmode": "REQUIRED",
-                 "ca": CA_CERT_PATH,  
-             },
-        }
-        )
+CA_CERT_PATH = os.getenv("CA_CERT_PATH")
+engine = create_engine(
+    url=SQLALCHEMY_DATABASE_URL,
+    connect_args={
+        "ssl": {
+            "sslmode": "REQUIRED",
+            "ca": CA_CERT_PATH,
+        },
+    },
+)
 
 Base = declarative_base()
 
