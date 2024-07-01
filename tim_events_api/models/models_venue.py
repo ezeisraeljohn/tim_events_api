@@ -6,9 +6,9 @@ from .models_base import BaseModel
 
 class Venue(BaseModel, Base):
 
-        __tablename__ = "venues"
+    __tablename__ = "venues"
 
-        name = Column(String(255))
-        location = Column(String(255))
-        capacity = Column(Integer)
-        description = Column(Text)
+    name = Column(String(255))
+    location = Column(String(255))
+    capacity = Column(Integer)
+    description = Column(Text)
